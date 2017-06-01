@@ -9,7 +9,6 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -21,7 +20,7 @@ android {
         debug {//debug环境
             buildConfigField "boolean", "debug", "true"
             versionNameSuffix "-debug"//在versionName的后面加了-debug的后缀名
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.debug
         }
@@ -38,4 +37,5 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
     compile 'com.android.support:support-v4:25.3.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
+    compile 'com.github.Cutta:GifView:1.1'
 }
