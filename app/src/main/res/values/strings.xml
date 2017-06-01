@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">bshop</string>
+    <string name="wait_dialog_title">正在请求，请稍后…</string>
 </resources>

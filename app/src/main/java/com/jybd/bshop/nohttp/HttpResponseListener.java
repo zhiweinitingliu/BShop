@@ -16,10 +16,8 @@
 package com.jybd.bshop.nohttp;
 
 import android.app.Activity;
-
-//import com.yanzhenjie.nohttp.sample.R;
-//import com.yanzhenjie.nohttp.sample.dialog.WaitDialog;
-//import com.yanzhenjie.nohttp.sample.util.Toast;
+import android.content.DialogInterface;
+import com.jybd.bshop.utils.DKLoading;
 import com.yanzhenjie.nohttp.Logger;
 import com.yanzhenjie.nohttp.error.NetworkError;
 import com.yanzhenjie.nohttp.error.NotFoundCacheError;
@@ -41,7 +39,11 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
     /**
      * Dialog.
      */
-//    private WaitDialog mWaitDialog;
+    private DKLoading dkLoading;
+    /**
+     * 是否显示加载的dialog
+     */
+    private boolean isLoading;
     /**
      * Request.
      */
@@ -62,10 +64,23 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
             canCancel, boolean isLoading) {
         this.mActivity = activity;
         this.mRequest = request;
+        this.isLoading = isLoading;
         if (activity != null && isLoading) {
-//            mWaitDialog = new WaitDialog(activity);
-//            mWaitDialog.setCancelable(canCancel);
-//            mWaitDialog.setOnCancelListener(dialog -> mRequest.cancel());
+            dkLoading = new DKLoading(activity) {
+                @Override
+                public void cancle() {
+
+                }
+            };
+            dkLoading.setCancelable(canCancel);
+
+            //将dialog的取消和网络请求的取消绑定
+            dkLoading.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    mRequest.cancel();
+                }
+            });
         }
         this.callback = httpCallback;
     }
@@ -75,8 +90,8 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
      */
     @Override
     public void onStart(int what) {
-//        if (mWaitDialog != null && !mActivity.isFinishing() && !mWaitDialog.isShowing())
-//            mWaitDialog.show();
+        if (dkLoading != null && !mActivity.isFinishing() && !dkLoading.isShowing() && isLoading)//isLoading一般只在第一次加载的时候显示提示加载的dialog
+            dkLoading.show();
     }
 
     /**
@@ -84,8 +99,8 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
      */
     @Override
     public void onFinish(int what) {
-//        if (mWaitDialog != null && mWaitDialog.isShowing())
-//            mWaitDialog.dismiss();
+        if (dkLoading != null && dkLoading.isShowing())
+            dkLoading.dismiss();
     }
 
     /**
@@ -96,7 +111,7 @@ public class HttpResponseListener<T> implements OnResponseListener<T> {
         if (callback != null) {
             // 这里判断一下http响应码，这个响应码问下你们的服务端你们的状态有几种，一般是200成功。
             // w3c标准http响应码：http://www.w3school.com.cn/tags/html_ref_httpmessages.asp
-
+            int responseCode = response.responseCode();
             callback.onSucceed(what, response);
         }
     }
