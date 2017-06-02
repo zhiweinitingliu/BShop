@@ -1,8 +1,6 @@
 package com.jybd.bshop.utils;
 
-import android.app.Activity;
 import android.content.Context;
-import android.os.Looper;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -28,6 +26,13 @@ public class LoadImage {
      * @param imgUrl
      */
     public static void loadRemoteImg(Context context, ImageView imageView, String imgUrl) {
+        Glide.with(context)
+                .load(imgUrl)
+                .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.drawable.nc_icon_null)  //设置占位图
+                .error(R.drawable.nc_icon_null)      //加载错误图
+                .into(imageView);
     }
 
     /**
@@ -40,6 +45,10 @@ public class LoadImage {
     public static void loadRemoteImg(RequestManager requestManager, ImageView imageView, String imgUrl) {
         requestManager
                 .load(imgUrl)
+                .fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.drawable.nc_icon_null)  //设置占位图
+                .error(R.drawable.nc_icon_null)      //加载错误图
                 .into(imageView);
     }
 
@@ -53,6 +62,7 @@ public class LoadImage {
     public static void loadLocalImg(Context context, ImageView imageView, String filePath) {
         Glide.with(context)
                 .load(new File(filePath))
+                .dontAnimate()        //取消默认的动画
                 .into(imageView);
     }
 
@@ -67,7 +77,6 @@ public class LoadImage {
 
     /**
      * 加载圆角图片
-     *
      * @param context
      * @param imageView
      * @param url
@@ -75,16 +84,8 @@ public class LoadImage {
     public static void loadRemoteCircleImg(Context context, ImageView imageView, String url) {
         Glide.with(context)
                 .load(url)
+                .transform(new GlideCircleTransform(context))
                 .into(imageView);
-    }
-
-    /**
-     * 判断是否是主线程
-     *
-     * @return
-     */
-    public static boolean isInMainThread() {
-        return Looper.myLooper() == Looper.getMainLooper();
     }
 
 }
