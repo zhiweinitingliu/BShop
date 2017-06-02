@@ -34,4 +34,17 @@
         <item name="colorAccent">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@android:color/transparent</item>  <!-- 设置window背景透明，也就是去边框 -->
     </style>
+
+
+    <!-- tab栏上的按钮样式 -->
+    <style name="HomeTabButton">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@drawable/homeactivity_bottom_textcolor_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
 </resources>
