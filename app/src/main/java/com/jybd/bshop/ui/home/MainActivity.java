@@ -98,7 +98,7 @@ public class MainActivity extends BaseActivity {
 
         FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
         if (!addFragment.isAdded()) {//判断需要添加Fragment是否是添加过
-            fragmentTransaction.add(R.id.frameLayout, addFragment).commit();
+            fragmentTransaction.hide(currentFragment).add(R.id.frameLayout, addFragment).commit();
         } else {
             fragmentTransaction.hide(currentFragment).show(addFragment).commit();
         }
