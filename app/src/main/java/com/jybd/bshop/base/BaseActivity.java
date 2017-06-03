@@ -3,12 +3,9 @@ package com.jybd.bshop.base;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.jybd.bshop.nohttp.HttpListener;
-import com.jybd.bshop.nohttp.HttpResponseListener;
+import com.jybd.bshop.utils.nohttp.HttpListener;
+import com.jybd.bshop.utils.nohttp.HttpResponseListener;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.rest.Request;
 import com.yanzhenjie.nohttp.rest.RequestQueue;

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.jybd.bshop.base.BaseFragment;
 import com.jybd.bshop.common.ConstontUrl;
-import com.jybd.bshop.nohttp.HttpListener;
+import com.jybd.bshop.utils.nohttp.HttpListener;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.RequestMethod;
 import com.yanzhenjie.nohttp.rest.Request;
