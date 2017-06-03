@@ -1,6 +1,10 @@
 package com.jybd.bshop.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -14,7 +18,7 @@ import java.io.File;
 /**
  * 网络图片加载帮助类
  *
- * @author qyf
+ * @author wdk
  */
 public class LoadImage {
 
@@ -67,16 +71,8 @@ public class LoadImage {
     }
 
     /**
-     * 清除图片的缓存
-     *
-     * @param context
-     */
-    public static void clearCache(Context context) {
-        Glide.get(context).clearMemory();
-    }
-
-    /**
      * 加载圆角图片
+     *
      * @param context
      * @param imageView
      * @param url
@@ -88,4 +84,62 @@ public class LoadImage {
                 .into(imageView);
     }
 
+    public static void disPlay(Context context, ImageView imageView, String url) {
+        Glide.with(context)
+                .load(url)
+                .placeholder(R.drawable.nc_icon_null)
+                .error(R.drawable.nc_icon_null)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade(0)
+                .into(imageView);
+
+    }
+
+    public static void disPlay(AppCompatActivity appCompatActivity, ImageView imageView, String url) {
+        Glide.with(appCompatActivity)
+                .load(url)
+                .placeholder(R.drawable.nc_icon_null)
+                .error(R.drawable.nc_icon_null)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade(0)
+                .into(imageView);
+
+    }
+
+    public static void disPlay(Activity activity, ImageView imageView, String url) {
+        Glide.with(activity)
+                .load(url)
+                .placeholder(R.drawable.nc_icon_null)
+                .error(R.drawable.nc_icon_null)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade(0)
+                .into(imageView);
+
+    }
+
+    public static void disPlay(FragmentActivity fragmentActivity, ImageView imageView, String url) {
+        Glide.with(fragmentActivity)
+                .load(url)
+                .placeholder(R.drawable.nc_icon_null)
+                .error(R.drawable.nc_icon_null)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade(0)
+                .into(imageView);
+
+    }
+
+    public static void disPlay(Fragment fragment, ImageView imageView, String url) {
+        Glide.with(fragment)
+                .load(url)
+                .placeholder(R.drawable.nc_icon_null)
+                .error(R.drawable.nc_icon_null)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE).crossFade(0)
+                .into(imageView);
+
+    }
+
+    /**
+     * 清除图片的缓存
+     *
+     * @param context
+     */
+    public static void clearCache(Context context) {
+        Glide.get(context).clearMemory();
+    }
 }

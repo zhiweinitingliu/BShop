@@ -26,7 +26,7 @@ import com.jybd.bshop.utils.LoadImage;
 
 /**
  * @Description RecyclerHolder封装
- * @Author qyf
+ * @Author wdk
  * @Email 1063810202@qq.com
  */
 public class RecyclerHolder extends RecyclerView.ViewHolder {

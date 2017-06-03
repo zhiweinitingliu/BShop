@@ -13,7 +13,7 @@ import java.util.List;
  * @Description RRecyclerAdapter封装
  * @Result 1.只有一种item的情况下，缓存的ViewHolder的数目为RecyclerView在滑动过程中所能在一屏内容纳的最大item个数+2
  * 2.有至少两种item显示的情况下，每种item的ViewHolder的缓存个数为单种item在一屏内最大显示个数+1
- * @Author qyf
+ * @Author wdk
  * @Email 1063810202@qq.com
  */
 public abstract class RRecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerHolder> {
