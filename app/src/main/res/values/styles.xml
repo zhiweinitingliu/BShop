@@ -47,4 +47,9 @@
         <item name="android:button">@null</item>
         <item name="android:drawablePadding">4dp</item>
     </style>
+
+    <!--设置冷启动画面-->
+    <style name="AppTheme.Launcher" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

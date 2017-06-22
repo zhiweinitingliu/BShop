@@ -17,12 +17,12 @@ import com.yanzhenjie.nohttp.cookie.DBCookieStore;
  */
 
 public class MyShopApplication extends Application {
-    private static Application _instance;
+    private static Application context;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        _instance = this;
+        context = this;
 
         Logger.setDebug(BuildConfig.DEBUG);// 开启NoHttp的调试模式, 配置后可看到请求过程、日志和错误信息。
         Logger.setTag("NoHttpSample");// 设置NoHttp打印Log的tag。
@@ -32,6 +32,6 @@ public class MyShopApplication extends Application {
     }
 
     public static Application getInstance() {
-        return _instance;
+        return context;
     }
 }
