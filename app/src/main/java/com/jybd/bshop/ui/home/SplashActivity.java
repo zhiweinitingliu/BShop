@@ -105,7 +105,6 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
             case R.id.sp_jump_btn:
                 countDownTimer.cancel();
                 gotoLoginOrMainActivity();
-                finish();
                 break;
         }
     }
@@ -127,8 +126,9 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
      * 跳转到首页面
      */
     private void gotoLoginOrMainActivity() {
-        finish();
         startActivity(new Intent(activity, MainActivity.class));
+        overridePendingTransition(R.anim.open_in, R.anim.open_out);
+        finish();
     }
 
     /**
