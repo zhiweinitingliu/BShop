@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.view.View;
 import android.widget.RadioButton;
 
 import com.jybd.bshop.R;
@@ -13,11 +15,9 @@ import com.jybd.bshop.ui.home.fragment.HomeFragment;
 import com.jybd.bshop.ui.home.fragment.MarktingFragment;
 import com.jybd.bshop.ui.home.fragment.MoreFragment;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
 
     private CustomerFragment customerFragment;
@@ -27,22 +27,34 @@ public class MainActivity extends BaseActivity {
     private FragmentManager supportFragmentManager;
     private Fragment currentFragment;
 
-    @BindView(R.id.rbStore)
+    //    @BindView(R.id.rbStore)
     RadioButton rbStore;
 
-    @BindView(R.id.rbCustomer)
+    //    @BindView(R.id.rbCustomer)
     RadioButton rbCustomer;
 
-    @BindView(R.id.rbMarkting)
+    //    @BindView(R.id.rbMarkting)
     RadioButton rbMarkting;
 
-    @BindView(R.id.rbMore)
+    //    @BindView(R.id.rbMore)
     RadioButton rbMore;
 
     @Override
     public void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        initView();
+    }
+
+    private void initView() {
+        rbStore = (RadioButton) findViewById(R.id.rbStore);
+        rbCustomer = (RadioButton) findViewById(R.id.rbCustomer);
+        rbMarkting = (RadioButton) findViewById(R.id.rbMarkting);
+        rbMore = (RadioButton) findViewById(R.id.rbMore);
+        rbStore.setOnClickListener(this);
+        rbCustomer.setOnClickListener(this);
+        rbMarkting.setOnClickListener(this);
+        rbMore.setOnClickListener(this);
+
     }
 
     @Override
@@ -54,35 +66,53 @@ public class MainActivity extends BaseActivity {
         currentFragment = homeFragment;
     }
 
-    @OnClick(R.id.rbStore)
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.rbStore:
+                onStore();
+                break;
+            case R.id.rbCustomer:
+                onCustomer();
+                break;
+            case R.id.rbMarkting:
+                onMarkting();
+                break;
+            case R.id.rbMore:
+                onMore();
+                break;
+        }
+    }
+
     void onStore() {//首页fragment
         if (homeFragment == null) {
             homeFragment = new HomeFragment();
         }
+        Log.e(TAG, "onStore: ");
         addFragment(homeFragment);
     }
 
-    @OnClick(R.id.rbCustomer)
     void onCustomer() {//客户fragment
         if (customerFragment == null) {
             customerFragment = new CustomerFragment();
         }
+        Log.e(TAG, "onCustomer:");
         addFragment(customerFragment);
     }
 
-    @OnClick(R.id.rbMarkting)
     void onMarkting() {//促销fragment
         if (marktingFragment == null) {
             marktingFragment = new MarktingFragment();
         }
+        Log.e(TAG, "onMarkting: ");
         addFragment(marktingFragment);
     }
 
-    @OnClick(R.id.rbMore)
     void onMore() {//更多fragment
         if (moreFragment == null) {
             moreFragment = new MoreFragment();
         }
+        Log.e(TAG, "onMore: ");
         addFragment(moreFragment);
     }
 
@@ -104,6 +134,4 @@ public class MainActivity extends BaseActivity {
         }
         currentFragment = addFragment;
     }
-
-
 }
