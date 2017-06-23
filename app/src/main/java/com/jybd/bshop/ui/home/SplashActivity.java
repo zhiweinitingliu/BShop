@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -130,6 +131,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         overridePendingTransition(R.anim.open_in, R.anim.open_out);
         finish();
     }
+
 
     /**
      * 加载图片，不设置内存和sd缓存

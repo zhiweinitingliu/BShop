@@ -1,12 +1,14 @@
 package com.jybd.bshop.ui.home.fragment;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.jybd.bshop.R;
 import com.jybd.bshop.base.BaseFragment;
 import com.jybd.bshop.common.ConstontUrl;
 import com.jybd.bshop.utils.nohttp.HttpListener;
@@ -25,6 +27,8 @@ import com.yanzhenjie.nohttp.rest.Response;
 public class HomeFragment extends BaseFragment implements HttpListener<String> {
     private static final String TAG = "HomeFragment";
 
+    private Toolbar toolbar;
+
     private int first_load_state = 101;
     private int refresh_state = 102;
     private int load_more_state = 103;
@@ -34,9 +38,15 @@ public class HomeFragment extends BaseFragment implements HttpListener<String> {
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        TextView textView = new TextView(activity);
-        textView.setText("homeFragment");
-        return textView;
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        toolbar= (Toolbar) view.findViewById(R.id.toolbar);
+        toolbar.setTitle("供应商首页");
+        toolbar.setTitleTextColor(activity.getResources().getColor(R.color.white));
+        return view;
+
+//        TextView textView = new TextView(activity);
+//        textView.setText("hometomerFragment");
+//        return textView;
     }
 
     @Override

@@ -1,19 +1,29 @@
 package com.jybd.bshop.ui.home;
 
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.jybd.bshop.R;
+import com.jybd.bshop.app.MyShopApplication;
 import com.jybd.bshop.base.BaseActivity;
 import com.jybd.bshop.ui.home.fragment.CustomerFragment;
 import com.jybd.bshop.ui.home.fragment.HomeFragment;
 import com.jybd.bshop.ui.home.fragment.MarktingFragment;
 import com.jybd.bshop.ui.home.fragment.MoreFragment;
+import com.jybd.bshop.utils.Utils;
 
 import butterknife.OnClick;
 
@@ -42,6 +52,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
+        Utils.initStatusBar(activity,R.color.colorPrimary);
         initView();
     }
 
