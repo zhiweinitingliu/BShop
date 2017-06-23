@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.jybd.bshop.R;
 import com.jybd.bshop.base.BaseActivity;
 import com.jybd.bshop.common.ConstontUrl;
+
+import java.util.Random;
 
 
 /**
@@ -85,7 +88,12 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void initData() {
         //加载网络图片
-        loadImage(ConstontUrl.SPLASH_IMAGE_URL_2);
+        if (getRandom() == 0) {
+            loadImage(ConstontUrl.SPLASH_IMAGE_URL_1);
+        } else {
+            loadImage(ConstontUrl.SPLASH_IMAGE_URL_2);
+        }
+
         //本地图片显示2秒，去判断网络闪屏图片是否加载完成，
         handler.sendEmptyMessageDelayed(local_splash_finish, 1500);
     }
@@ -156,6 +164,17 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         }
     };
 
+    private int getRandom() {
+        Random random = new Random();
+        int result = 0;
+        int a = random.nextInt(10);
+        if (a % 2 == 0) {
+            result = 0;
+        } else {
+            result = 1;
+        }
+        return result;
+    }
 
     @Override
     protected void onDestroy() {
