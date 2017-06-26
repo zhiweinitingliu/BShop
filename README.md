@@ -8,5 +8,6 @@
 目的：督促自己的学习，给大加提供一个拿来就能用的安卓框架，不用在开发前期做多余的准备工作，直接上手开发<br> 
 
 事例图片：<br>
-![image](https://github.com/zhiweinitingliu/BShop/tree/master/images/splash_home.gif)
+![image](https://github.com/zhiweinitingliu/BShop/tree/master/images/splash_home.gif)<br>
+![Image text](https://raw.githubusercontent.com/hongmaju/light7Local/master/img/productShow/20170518152848.png)
 
