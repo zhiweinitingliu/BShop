@@ -7,6 +7,11 @@
 
 目的：督促自己的学习，给大加提供一个拿来就能用的安卓框架，不用在开发前期做多余的准备工作，直接上手开发<br> 
 
-事例图片：<br>
-![Image text](https://github.com/zhiweinitingliu/BShop/blob/master/images/splash_home.gif)
+# 第一阶段工作
+* 不带侧滑的首页：<br>
+![Image text](https://github.com/zhiweinitingliu/BShop/blob/master/images/splash_home.gif)<br>
+* 带有侧滑的首页：<br>
+![Image text](https://github.com/zhiweinitingliu/BShop/blob/master/images/cehua_home.gif)
+
+
 
