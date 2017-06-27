@@ -13,12 +13,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
+
 import com.jybd.bshop.R;
 import com.jybd.bshop.base.BaseActivity;
 import com.jybd.bshop.ui.home.sideFragment.SideCustomerFragment;
 import com.jybd.bshop.ui.home.sideFragment.SideHomeFragment;
 import com.jybd.bshop.ui.home.sideFragment.SideMarktingFragment;
 import com.jybd.bshop.ui.home.sideFragment.SideMoreFragment;
+import com.jybd.bshop.utils.StatusBarUtil;
 import com.jybd.bshop.utils.Utils;
 
 import butterknife.BindView;
@@ -63,16 +65,20 @@ public class SideHomeActivity extends BaseActivity implements NavigationView.OnN
 
     @BindView(R.id.nav_view)
     NavigationView navigationView;
+    int alpha_main = 0;
+    private int mStatusBarColor;
+
 
     @Override
     public void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_side_home);
         ButterKnife.bind(this);
-        Utils.initStatusBar(activity, R.color.colorPrimary);
         initView();
     }
 
     private void initView() {
+        mStatusBarColor = getResources().getColor(R.color.colorPrimary);
+        StatusBarUtil.setColorForDrawerLayout(activity, drawer, mStatusBarColor, alpha_main);
         setSupportActionBar(toolbar);
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

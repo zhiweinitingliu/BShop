@@ -31,7 +31,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.home.SideHomeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
