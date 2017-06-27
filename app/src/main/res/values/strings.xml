@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">bshop</string>
+    <string name="app_name">app框架</string>
     <string name="wait_dialog_title">正在请求，请稍后…</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

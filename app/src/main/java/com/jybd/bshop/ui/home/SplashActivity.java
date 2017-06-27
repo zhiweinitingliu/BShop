@@ -24,6 +24,11 @@ import com.jybd.bshop.common.ConstontUrl;
 
 import java.util.Random;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import butterknife.Unbinder;
+
 
 /**
  * @Author : wdk
@@ -32,15 +37,20 @@ import java.util.Random;
  * @Description :闪屏页面
  */
 
-public class SplashActivity extends BaseActivity implements View.OnClickListener {
+public class SplashActivity extends BaseActivity {
 
     private boolean isShowSplash;
 
+    @BindView(R.id.sp_jump_btn)
     Button sp_jump_btn;
 
+    @BindView(R.id.sp_bg)
     ImageView sp_bg;
 
+    @BindView(R.id.rl_splash)
     RelativeLayout rl_splash;
+
+    private Unbinder unbinder;
 
     private final int local_splash_finish = 10011;
     private final int local_splash_finish_tow = 10012;
@@ -73,17 +83,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_splash);
-        initView();
+        unbinder = ButterKnife.bind(this);
     }
-
-    private void initView() {
-        sp_jump_btn = (Button) findViewById(R.id.sp_jump_btn);
-        sp_bg = (ImageView) findViewById(R.id.sp_bg);
-        rl_splash = (RelativeLayout) findViewById(R.id.rl_splash);
-        sp_bg.setOnClickListener(this);
-        sp_jump_btn.setOnClickListener(this);
-    }
-
 
     @Override
     public void initData() {
@@ -102,7 +103,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
         countDownTimer.start();
     }
 
-    @Override
+    @OnClick({R.id.sp_bg, R.id.sp_jump_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.sp_bg:
@@ -135,7 +136,8 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
      * 跳转到首页面
      */
     private void gotoLoginOrMainActivity() {
-        startActivity(new Intent(activity, MainActivity.class));
+//        startActivity(new Intent(activity, MainActivity.class));//不带侧滑
+        startActivity(new Intent(activity, SideHomeActivity.class));//带侧滑
         overridePendingTransition(R.anim.open_in, R.anim.open_out);
         finish();
     }
@@ -179,6 +181,7 @@ public class SplashActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbinder.unbind();
         if (countDownTimer != null)
             countDownTimer.cancel();
     }

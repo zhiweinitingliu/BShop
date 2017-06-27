@@ -1,23 +1,13 @@
 package com.jybd.bshop.ui.home;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.jybd.bshop.R;
-import com.jybd.bshop.app.MyShopApplication;
 import com.jybd.bshop.base.BaseActivity;
 import com.jybd.bshop.ui.home.fragment.CustomerFragment;
 import com.jybd.bshop.ui.home.fragment.HomeFragment;
@@ -25,10 +15,27 @@ import com.jybd.bshop.ui.home.fragment.MarktingFragment;
 import com.jybd.bshop.ui.home.fragment.MoreFragment;
 import com.jybd.bshop.utils.Utils;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
+
+    @BindView(R.id.rbStore)
+    RadioButton rbStore;
+
+    @BindView(R.id.rbCustomer)
+    RadioButton rbCustomer;
+
+    @BindView(R.id.rbMarkting)
+    RadioButton rbMarkting;
+
+    @BindView(R.id.rbMore)
+    RadioButton rbMore;
+
+    private Unbinder unbinder;
 
     private CustomerFragment customerFragment;
     private HomeFragment homeFragment;
@@ -37,35 +44,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private FragmentManager supportFragmentManager;
     private Fragment currentFragment;
 
-    //    @BindView(R.id.rbStore)
-    RadioButton rbStore;
-
-    //    @BindView(R.id.rbCustomer)
-    RadioButton rbCustomer;
-
-    //    @BindView(R.id.rbMarkting)
-    RadioButton rbMarkting;
-
-    //    @BindView(R.id.rbMore)
-    RadioButton rbMore;
-
     @Override
     public void onActivityCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
-        Utils.initStatusBar(activity,R.color.colorPrimary);
-        initView();
-    }
-
-    private void initView() {
-        rbStore = (RadioButton) findViewById(R.id.rbStore);
-        rbCustomer = (RadioButton) findViewById(R.id.rbCustomer);
-        rbMarkting = (RadioButton) findViewById(R.id.rbMarkting);
-        rbMore = (RadioButton) findViewById(R.id.rbMore);
-        rbStore.setOnClickListener(this);
-        rbCustomer.setOnClickListener(this);
-        rbMarkting.setOnClickListener(this);
-        rbMore.setOnClickListener(this);
-
+        unbinder = ButterKnife.bind(this);
+        Utils.initStatusBar(activity, R.color.colorPrimary);
     }
 
     @Override
@@ -77,24 +60,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         currentFragment = homeFragment;
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.rbStore:
-                onStore();
-                break;
-            case R.id.rbCustomer:
-                onCustomer();
-                break;
-            case R.id.rbMarkting:
-                onMarkting();
-                break;
-            case R.id.rbMore:
-                onMore();
-                break;
-        }
-    }
-
+    @OnClick(R.id.rbStore)
     void onStore() {//首页fragment
         if (homeFragment == null) {
             homeFragment = new HomeFragment();
@@ -103,6 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         addFragment(homeFragment);
     }
 
+    @OnClick(R.id.rbCustomer)
     void onCustomer() {//客户fragment
         if (customerFragment == null) {
             customerFragment = new CustomerFragment();
@@ -111,6 +78,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         addFragment(customerFragment);
     }
 
+    @OnClick(R.id.rbMarkting)
     void onMarkting() {//促销fragment
         if (marktingFragment == null) {
             marktingFragment = new MarktingFragment();
@@ -119,6 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         addFragment(marktingFragment);
     }
 
+    @OnClick(R.id.rbMore)
     void onMore() {//更多fragment
         if (moreFragment == null) {
             moreFragment = new MoreFragment();
@@ -144,5 +113,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             fragmentTransaction.hide(currentFragment).show(addFragment).commit();
         }
         currentFragment = addFragment;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }
