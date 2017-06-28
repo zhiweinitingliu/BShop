@@ -50,6 +50,7 @@ public class SideHomeFragment extends BaseFragment implements HttpListener<Strin
         ButterKnife.bind(this, view);
         ((AppCompatActivity) activity).setSupportActionBar(toolbar);
         ((SideHomeActivity) activity).setDrawerToggle(toolbar);
+        setHasOptionsMenu(true);//设置menu
         return view;
     }
 
@@ -60,7 +61,8 @@ public class SideHomeFragment extends BaseFragment implements HttpListener<Strin
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        toolbar.inflateMenu(R.menu.main);
+//        toolbar.inflateMenu(R.menu.main);
+        inflater.inflate(R.menu.main,menu);
     }
 
     @Override
