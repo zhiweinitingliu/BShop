@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.jybd.bshop.R;
 import com.jybd.bshop.base.BaseFragment;
 
 /**
@@ -19,9 +19,8 @@ public class SideCustomerFragment extends BaseFragment {
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        TextView textView = new TextView(activity);
-        textView.setText("customerFragment");
-        return textView;
+        View view = inflater.inflate(R.layout.fragment_side_customer, container, false);
+        return view;
     }
 
     @Override

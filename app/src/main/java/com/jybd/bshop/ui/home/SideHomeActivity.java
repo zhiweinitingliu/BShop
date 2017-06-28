@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.RadioButton;
 
 import com.jybd.bshop.R;
@@ -21,7 +22,6 @@ import com.jybd.bshop.ui.home.sideFragment.SideHomeFragment;
 import com.jybd.bshop.ui.home.sideFragment.SideMarktingFragment;
 import com.jybd.bshop.ui.home.sideFragment.SideMoreFragment;
 import com.jybd.bshop.utils.StatusBarUtil;
-import com.jybd.bshop.utils.Utils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,9 +57,6 @@ public class SideHomeActivity extends BaseActivity implements NavigationView.OnN
     @BindView(R.id.rbMore)
     RadioButton rbMore;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
 
@@ -79,13 +76,21 @@ public class SideHomeActivity extends BaseActivity implements NavigationView.OnN
     private void initView() {
         mStatusBarColor = getResources().getColor(R.color.colorPrimary);
         StatusBarUtil.setColorForDrawerLayout(activity, drawer, mStatusBarColor, alpha_main);
-        setSupportActionBar(toolbar);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * 设置侧滑事件
+     *
+     * @param toolbar
+     */
+    public void setDrawerToggle(Toolbar toolbar) {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
     }
+
 
     @Override
     public void initData() {
@@ -148,6 +153,7 @@ public class SideHomeActivity extends BaseActivity implements NavigationView.OnN
         } else {
             fragmentTransaction.hide(currentFragment).show(addFragment).commit();
         }
+
         currentFragment = addFragment;
     }
 
@@ -159,29 +165,6 @@ public class SideHomeActivity extends BaseActivity implements NavigationView.OnN
         } else {
             super.onBackPressed();
         }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
